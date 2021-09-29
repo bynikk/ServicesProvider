@@ -1,0 +1,115 @@
+﻿@using ServicesProvider.Service
+@using ServicesProvider.Models
+
+
+@model UsersAdHomeViewModel
+
+@{
+    Layout = "_Layout";
+}
+
+
+@section Head {
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <meta name="description" content="">
+     <title> HOME </title>
+
+     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/headers/">
+
+     <!-- Bootstrap core CSS -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+     <!-- Custom styles for this template -->
+     <link href="~/css/headers.css" rel="stylesheet">
+ }
+
+<body>
+    <main>
+                <style>
+                    .text-end {
+                        position: absolute;
+                    }
+
+                    @@media (min-width: 576px) {
+                        .row-cols-sm-2 > * {
+                            flex: 0 0 auto;
+                            width: 50%;
+                        }
+                    }
+
+                    @@media (min-width: 768px) {
+                        .row-cols-md-3 > * {
+                            flex: 0 0 auto;
+                            width: 33.3333333333%;
+                        }
+                    }
+
+                    .worgiver {
+                        font-size: 12px;
+                    }
+
+                    .col {
+                        margin-bottom: 20px;
+                    }
+
+                    .rect {
+                        border: 1px solid;
+                        margin: 0;
+                        padding: 0;
+                    }
+
+                    .my-new-color {
+                        color: black;
+                    }
+
+                    .home-user-ad-prise {
+                        margin: auto;
+                    }
+
+                    .text-muted {
+                        margin-top: 20px;
+                    }
+
+                    .text-muted:before {
+                        content: " ◴ ";
+                    }
+                </style>
+        
+        <h1> @Model.categoryViewName</h1>
+        <div class="album py-5 bg-light">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    @{
+                        foreach (var item in Model.allUsersAds)
+                        {
+                            <div class="col my-new-color">
+                                <div class="card shadow-sm rect">
+                                    <img src=@item.Img width="100%" height="225" />
+                                    <div class="card-body">
+                                        <h4 class="card-text">@item.Name</h4>
+                                        <div class="">
+                                            <p class="worgiver"> @(item.OwnerUsername ?? "No username")</p>
+                                            <p class="worgiver"> @(item.Category.CategoryName ?? "No category name")</p>
+                                        </div>
+                                        <p class="worgiver"> @(item.ShortDesc ?? "No description")</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">Buy</button>
+                                            </div>
+                                            <p class="home-user-ad-prise">@item.Price.ToString()</p>
+                                            <small class="text-muted">9 min</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="b-example-divider"></div>
+    </main>
+</body>

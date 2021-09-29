@@ -1,0 +1,52 @@
+﻿@model ServicesProvider.Models.Entities.UserAdView
+@{
+    Layout = "_Layout";
+}
+
+@section Head{
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/css/make-ad.css" rel="stylesheet" />
+    <title>Document</title>
+}
+<!--
+<label> Name</label>
+<input type="text" name="ad-title" value="Title" id="ad-title-inp" />
+<label> Name</label>
+<input type="text" name="ad-description" value="Description" id="ad-description-inp" />
+-->
+
+<style>
+    .ddlstyle
+    {
+        color:rgb(33,33,00);
+        Font-Family:Book Antiqua;
+        font-size:12px;
+        vertical-align :middle;
+    }
+</style>
+
+<div asp-validation-summary="All"></div>
+<form asp-controller="Item" asp-action="Add" method="post">
+    <label> Ad Name</label>
+    <input asp-for="Name" type="text" />
+    <label> ShortDesc</label>
+    <input asp-for="ShortDesc" type="text" />
+    <label>Long Desc</label>
+    <input asp-for="LongDesc" type="text" />
+
+    <select asp-for="CategoryId" id="DropDownList1">
+        <option value="1">Programing</option>
+        <option value="2">Design</option>
+    </select>
+
+    <label> Price</label>
+    <input asp-for="Price" type="text" />
+    <button type="submit">
+        Add
+    </button>
+</form>
+
+
+
