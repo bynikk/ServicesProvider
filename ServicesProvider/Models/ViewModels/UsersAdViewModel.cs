@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ServicesProvider.Models.Entities;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace ServicesProvider.Models.Entities
+namespace ServicesProvider.Models.ViewModels
 {
-    public class UserAdView
+    public class UsersAdViewModel
     {
         public int Id { set; get; }
         [Required]

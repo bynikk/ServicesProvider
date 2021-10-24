@@ -1,4 +1,4 @@
-﻿@model ServicesProvider.Models.Entities.UserAdView
+﻿@model ServicesProvider.Models.ViewModels.UsersAdViewModel
 @{
     Layout = "_Layout";
 }
@@ -31,8 +31,10 @@
 <form asp-controller="Item" asp-action="Add" method="post">
     <label> Ad Name</label>
     <input asp-for="Name" type="text" />
+
     <label> ShortDesc</label>
     <input asp-for="ShortDesc" type="text" />
+
     <label>Long Desc</label>
     <input asp-for="LongDesc" type="text" />
 

@@ -12,6 +12,7 @@ using ServicesProvider.Data.Repository;
 using ServicesProvider.Models.Entities;
 using ServicesProvider.Service;
 using ServicesProvider.Models.Interfaces;
+using Microsoft.AspNetCore.Identity;
 
 namespace ServicesProvider
 {
@@ -27,7 +28,7 @@ namespace ServicesProvider
             services.AddDbContext<ApplicationDbContext>(config =>
             {
                 config.UseSqlServer (
-                    "Server=(localdb)\\MSSQLLocalDB;Database=ServicesProvider;Trusted_Connection=True;MultipleActiveResultSets=true");
+                    "Server=(localdb)\\MSSQLLocalDB;Database=ServicesProviderDb;Trusted_Connection=True;MultipleActiveResultSets=true");
             }).AddIdentity<ApplicationUser, ApplicationRole>(config =>
                 {
                     config.Password.RequireDigit = false;
@@ -36,7 +37,8 @@ namespace ServicesProvider
                     config.Password.RequireUppercase = false;
                     config.Password.RequiredLength = 6;
                 }) 
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();   
 
             services.AddMvc(options => options.EnableEndpointRouting = false);
 
@@ -58,8 +60,9 @@ namespace ServicesProvider
 
                 options.AddPolicy(RolesModel.User, builder =>
                 {
-                    builder.RequireAssertion(x => x.User.HasClaim(ClaimTypes.Role, RolesModel.Administrator)
-                        || x.User.HasClaim(ClaimTypes.Role, RolesModel.User));
+                    builder.RequireAssertion(x =>
+                        x.User.HasClaim(ClaimTypes.Role, RolesModel.Administrator) ||
+                        x.User.HasClaim(ClaimTypes.Role, RolesModel.User));
                 });
             });
 

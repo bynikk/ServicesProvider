@@ -20,7 +20,7 @@
      <!-- Bootstrap core CSS -->
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
      <!-- Custom styles for this template -->
-     <link href="~/css/headers.css" rel="stylesheet">
+     <link href="~/css/headers.css" rel="stylesheet" media="screen" runat="server">
  }
 
 <body>
@@ -83,25 +83,26 @@
                         foreach (var item in Model.allUsersAds)
                         {
                             <div class="col my-new-color">
-                                <div class="card shadow-sm rect">
-                                    <img src=@item.Img width="100%" height="225" />
-                                    <div class="card-body">
-                                        <h4 class="card-text">@item.Name</h4>
-                                        <div class="">
-                                            <p class="worgiver"> @(item.OwnerUsername ?? "No username")</p>
-                                            <p class="worgiver"> @(item.Category.CategoryName ?? "No category name")</p>
-                                        </div>
-                                        <p class="worgiver"> @(item.ShortDesc ?? "No description")</p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">Buy</button>
-                                            </div>
-                                            <p class="home-user-ad-prise">@item.Price.ToString()</p>
-                                            <small class="text-muted">9 min</small>
-                                        </div>
-                                    </div>
+                                <div class="card shadow-sm rect">   
+                                                        <div class="alb-con-img">
+                                                            <img src=@item.Img width="100%" height="auto" />
+
+                                                        </div>
+                                                            <div class="card-body">
+                                                                <h4 class="card-text">@item.Name</h4>
+                                                                <div class="">
+                                                                    <p class="worgiver"> @(item.OwnerUsername ?? "No username")</p>
+                                                                    <p class="worgiver"> @(item.Category.CategoryName ?? "No category name")</p>
+                                                                </div>
+                                                                <p class="worgiver"> @(item.ShortDesc ?? "No description")</p>
+                                                                <div class="d-flex justify-content-between align-items-center">
+                                                                    <div class="btn-group">
+                                                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                                                    </div>
+                                                                    <p class="home-user-ad-prise">@item.Price.ToString("C1")</p>
+                                                                    <small class="text-muted">9 min</small>
+                                                                </div>
+                                                            </div>
                                 </div>
                             </div>
                         }

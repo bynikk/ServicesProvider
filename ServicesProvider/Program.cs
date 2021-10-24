@@ -37,18 +37,18 @@ namespace ServicesProvider
         {
             var userManager = scopeServiceProvider.GetService<UserManager<ApplicationUser>>();
 
-            var user = new ApplicationUser
+            var user = new ApplicationUser()
             {
-                UserName = "User",
-                LastName = "LastName",
-                FirstName = "FirstName"
+                UserName = "Admin",
+                LastName = "Admin",
+                FirstName = "Admin"
             };
             
             var result = userManager.CreateAsync(user, "123qwe").GetAwaiter().GetResult();
 
             if (result.Succeeded)
             {
-                userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, RolesModel.User)).GetAwaiter()
+                userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, RolesModel.Administrator)).GetAwaiter()
                     .GetResult();
             }
             

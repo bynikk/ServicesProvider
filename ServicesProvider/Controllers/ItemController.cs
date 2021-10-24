@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using ServicesProvider.Data;
 using ServicesProvider.Data.DbObjects;
 using ServicesProvider.Models.Entities;
+using ServicesProvider.Models.ViewModels;
 
 namespace ServicesProvider.Controllers
 {
@@ -29,7 +30,7 @@ namespace ServicesProvider.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(UserAdView model)
+        public IActionResult Add(UsersAdViewModel model)
         {
             if (!ModelState.IsValid)
             {

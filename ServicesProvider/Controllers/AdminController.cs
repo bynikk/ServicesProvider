@@ -22,6 +22,7 @@ namespace ServicesProvider.Controllers
             _signInManager = signInManager;
         }
 
+        [Authorize(Policy = RolesModel.Administrator)]
         public IActionResult Index()
         {
             return View();
@@ -32,13 +33,6 @@ namespace ServicesProvider.Controllers
         {
             return View();
         }
-
-        [Authorize(Policy = RolesModel.User)]
-        public IActionResult User()
-        {
-            return View();
-        }
-
     }
 }
 

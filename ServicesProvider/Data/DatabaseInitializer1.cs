@@ -8,7 +8,7 @@ namespace ServicesProvider.Data
     public static class DatabaseInitializer1
     {
         //temp
-        private static string imgUrl = "https://shwanoff.ru/wp-content/uploads/2018/05/programming.jpg";
+        private static string imgUrl = "https://avatanplus.com/files/resources/original/5b6d84353310216523cc6fd9.png";
         private static string uraUrl = "https://sun9-68.userapi.com/s/v1/ig2/fCY99egStyyX8UFtLazVeajNSS9CsiyP0ALmdncdF7hsRHNnli2Lv_BqBU_YNLhueuzh_hOsKZYSNTgVugjwfXcf.jpg?size=200x214&quality=95&crop=101,86,454,488&ava=1";
         public static void Initial(ApplicationDbContext context)
         {

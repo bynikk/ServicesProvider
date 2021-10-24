@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ServicesProvider.Models.Entities;
+using ServicesProvider.Models.ViewModels;
 
 namespace ServicesProvider.Data.DbObjects
 {
@@ -17,7 +18,7 @@ namespace ServicesProvider.Data.DbObjects
         {
             _context = context;
         }
-        public void AddUserAd(UserAdView userAdView, ApplicationUser user)
+        public void AddUserAd(UsersAdViewModel userAdView, ApplicationUser user)
         {
 
             UsersAd UsersAd = new()

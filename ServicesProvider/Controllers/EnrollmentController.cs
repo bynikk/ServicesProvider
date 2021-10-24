@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using ServicesProvider.Models;
 using ServicesProvider.Models.Entities;
+using ServicesProvider.Models.ViewModels;
+using System.Security.Claims;
+using ServicesProvider.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ServicesProvider.Controllers
 {
@@ -35,7 +36,7 @@ namespace ServicesProvider.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ModelState.AddModelError("", "Invalid data");
+                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                 return View(model);
             }
 
@@ -43,7 +44,7 @@ namespace ServicesProvider.Controllers
 
             if (user == null)
             {
-                ModelState.AddModelError("", "User not found");
+                ModelState.AddModelError("", "User not found.");
                 return View(model);
             }
 
@@ -51,16 +52,53 @@ namespace ServicesProvider.Controllers
 
             if (result.Succeeded)
             {
-                if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
+                if (_userManager.HasClaim(user, ClaimTypes.Role, RolesModel.Administrator))
                 {
-                    return Redirect(model.ReturnUrl);
+                    model.ReturnUrl = "/Admin/Index";
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Admin");
+                    model.ReturnUrl = "/Home/Index";
                 }
-                //return Redirect(model.ReturnUrl);
+                
+                return Redirect(model.ReturnUrl);
             }
+
+            return View(model);
+        }
+
+        [AllowAnonymous]
+        public IActionResult SignUp(string returnUrl)
+        {
+            return View(new SignUpViewModel() { ReturnUrl = returnUrl });
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<ActionResult> SignUp(SignUpViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            if (await _userManager.FindByNameAsync(model.UserName) != null)
+            {
+                ModelState.AddModelError("", $"User with this '{model.UserName}' username already exist");
+                return View(model);
+            }
+
+            var user = new ApplicationUser(model);
+
+            
+            var result = await _userManager.CreateAsync(user, model.Password);
+
+            if (result.Succeeded)
+            {
+                await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, RolesModel.User));
+                Redirect("/Home/Index");
+            }
+            
 
             return View(model);
         }
