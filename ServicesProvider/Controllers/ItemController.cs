@@ -10,6 +10,8 @@ using ServicesProvider.Data;
 using ServicesProvider.Data.DbObjects;
 using ServicesProvider.Models.Entities;
 using ServicesProvider.Models.ViewModels;
+using ServicesProvider.Models.Interfaces;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ServicesProvider.Controllers
 {
@@ -17,15 +19,25 @@ namespace ServicesProvider.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private DbUsersAdManager _dbUsersAdManager;
-        public ItemController(ApplicationDbContext applicationDbContext, UserManager<ApplicationUser> userManager)
+
+        private IUsersAdsCategory _usersAdsCategory;
+
+        private List<SelectListItem> _selectList;
+
+        public ItemController(ApplicationDbContext applicationDbContext, UserManager<ApplicationUser> userManager,
+            IUsersAdsCategory usersAdsCategory)
         {
             _userManager = userManager;
             _dbUsersAdManager = new(applicationDbContext, userManager);
+            _usersAdsCategory = usersAdsCategory;
+            _selectList = _usersAdsCategory.GetSelectListItems;
         }
 
         [HttpGet]
         public IActionResult Add()
         {
+            //var selectList = new SelectList(_usersAdsCategory.AllCategories, nameof(Category.Id), nameof(Category.CategoryName));
+            ViewBag.SelectList = _usersAdsCategory.UbdateSelectList(_selectList);
             return View();
         }
 

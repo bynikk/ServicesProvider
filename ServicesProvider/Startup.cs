@@ -6,7 +6,6 @@ using Microsoft.Extensions.Hosting;
 using ServicesProvider.Data;
 using ServicesProvider.Models;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using ServicesProvider.Data.Repository;
 using ServicesProvider.Models.Entities;
@@ -96,7 +95,6 @@ namespace ServicesProvider
 
             using var scope = app.ApplicationServices.CreateScope();
             ApplicationDbContext context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-            DatabaseInitializer1.Initial(context);
         }
     }
 }

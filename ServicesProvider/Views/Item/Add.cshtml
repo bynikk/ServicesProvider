@@ -7,48 +7,81 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="~/css/make-ad.css" rel="stylesheet" />
-    <title>Document</title>
+
+    <link href="~/css/reset.css" rel="stylesheet" media="screen" runat="server">
+    <link href="~/css/headers.css" rel="stylesheet" media="screen" runat="server">
+    <link href="~/css/index.css" rel="stylesheet" media="screen" runat="server">
+    <link href="~/css/add.css" rel="stylesheet" media="screen" runat="server">
+
+    <title>ADD</title>
 }
-<!--
-<label> Name</label>
-<input type="text" name="ad-title" value="Title" id="ad-title-inp" />
-<label> Name</label>
-<input type="text" name="ad-description" value="Description" id="ad-description-inp" />
--->
 
-<style>
-    .ddlstyle
-    {
-        color:rgb(33,33,00);
-        Font-Family:Book Antiqua;
-        font-size:12px;
-        vertical-align :middle;
-    }
-</style>
+<div class="main-content-con">
+    <div class="section">
+        <form asp-controller="Item" asp-action="Add" method="post">
+            <div class="form-cont">
+                <div class="form-colom">
+                    <div>
+                    <label class="form-label">Title: </label>
+                    <input asp-for="Name" class="form-input form-item" type="text" value="">
+                    </div>
+                    <div>
+                        <label class="form-label">Category: </label>
+                        <select asp-for="CategoryId" asp-items="ViewBag.SelectList" class="form-select form-item">
+                            <option selected="selected" disabled="disabled">Choose category</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="form-label">Price: </label>
+                        <input asp-for="Price" class="form-input form-item">
+                    </div>
+                    <div>
+                        <label class="form-label">Upload file:</label>
+                        <input class="form-input form-item" type="file" multiple>
+                    </div>
+                    <div class="form-button-section">
+                            <a class="form-button">APPLY</a>
+                            <button type="submit" class="form-button">ADD</button>
+                    </div>
+                    <div asp-validation-summary="All" class="form-validation"></div>
+                </div>
 
-<div asp-validation-summary="All"></div>
-<form asp-controller="Item" asp-action="Add" method="post">
-    <label> Ad Name</label>
-    <input asp-for="Name" type="text" />
+                <div class="form-colom">
+                    <div>
+                        <label asp-for="ShortDesc" class="form-label">Short description: </label>
+                        <textarea class="form-input form-item" type="text" value="" rows="5" maxlength="100">
+                    </textarea>
+                    </div>
+                    <div>
+                        <label asp-for="LongDesc" class="form-label">Long description: </label>
+                        <textarea class="form-input form-item" type="text" value="" rows="14" maxlength="350" wrap="hard">
+                    </textarea>
+                    </div>
+                </div>
 
-    <label> ShortDesc</label>
-    <input asp-for="ShortDesc" type="text" />
+                <div class="card-section">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="~/images/user.png" alt="card-img">
+                        </div>
+                        <div class="card-title">Game creation</div>
+                        <div class="card-desc">Предоставляю услуги по перевозке наркотиков в пределах Минска. Анонимность гарантирую</div>
+                        <div class="card-about">
+                            <div class="card-category">Game Dev</div>
+                            <div class="card-username">User</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-price">100 BYN</div>
+                            <a class="card-button">VIEW</a>
+                            <div class="card-publish-time">18:23<br>23.10.2021</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
 
-    <label>Long Desc</label>
-    <input asp-for="LongDesc" type="text" />
-
-    <select asp-for="CategoryId" id="DropDownList1">
-        <option value="1">Programing</option>
-        <option value="2">Design</option>
-    </select>
-
-    <label> Price</label>
-    <input asp-for="Price" type="text" />
-    <button type="submit">
-        Add
-    </button>
-</form>
+    </div>
+</div>
 
 
 

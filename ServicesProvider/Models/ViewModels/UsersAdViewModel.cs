@@ -1,10 +1,12 @@
-﻿using ServicesProvider.Models.Entities;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using ServicesProvider.Models.Entities;
 using System.ComponentModel.DataAnnotations;
 
 namespace ServicesProvider.Models.ViewModels
 {
     public class UsersAdViewModel
     {
+        public SelectList SelectList { get; set; }
         public int Id { set; get; }
         [Required]
         public string Name { set; get; }

@@ -6,6 +6,8 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using ServicesProvider.Models;
 using ServicesProvider.Models.Entities;
+using ServicesProvider.Data;
+using System.Linq;
 
 namespace ServicesProvider
 {
@@ -36,6 +38,7 @@ namespace ServicesProvider
         internal static void Init(IServiceProvider scopeServiceProvider)
         {
             var userManager = scopeServiceProvider.GetService<UserManager<ApplicationUser>>();
+            var context = scopeServiceProvider.GetService<ApplicationDbContext>();
 
             var user = new ApplicationUser()
             {
@@ -51,7 +54,22 @@ namespace ServicesProvider
                 userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, RolesModel.Administrator)).GetAwaiter()
                     .GetResult();
             }
+
+
+            if (!context.Category.Any())
+            {
+                context.Category.AddRange(new Category[]
+                    {
+                        new Category() {CategoryName = "Web Development", Description = "Web develpment services."},
+                        new Category() {CategoryName = "Game Development", Description = "Game develpment services."},
+                        new Category() {CategoryName = "Design", Description = "Design services.."},
+                        new Category() {CategoryName = "Mobile Development", Description = "Mobile develpment services."}
+                    });
+            }
+
+                context.SaveChanges();
             
+
         }
     }
 }

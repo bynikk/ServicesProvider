@@ -10,5 +10,7 @@ namespace ServicesProvider.Models.Interfaces
 
         UsersAd GetUserAd(int userAdId);
 
+        public List<UsersAd> GetUsersAdsByCategoryId(int categoryId);
+
     }
 }

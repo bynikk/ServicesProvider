@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ServicesProvider.Models;
 using ServicesProvider.Models.Entities;
 using ServicesProvider.Models.Interfaces;
@@ -18,6 +19,9 @@ namespace ServicesProvider.Controllers
         private readonly IAllUsersAds _allUsersAds;
         private readonly IUsersAdsCategory _usersAdsCategory;
 
+        private List<SelectListItem> _selectList;
+
+
         public HomeController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
@@ -29,45 +33,34 @@ namespace ServicesProvider.Controllers
 
             _allUsersAds = allUsersAds;
             _usersAdsCategory = usersAdsCategory;
+
+            _selectList = _usersAdsCategory.GetSelectListItems;
         }
         
         [Route("Home/Index")]
         [Route("Home/Index/{categoryId}")]
+        [HttpGet]
         public IActionResult Index(int categoryId)
         {
-            IEnumerable<UsersAd> usersAds = null;
-            int curCategory = 0;
-            string curCategoryName = string.Empty;
-
-            if (categoryId == default)
-            {
-                usersAds = _allUsersAds.UsersAds.OrderBy(x => x.Id);
-            }
-            else
-            {
-                if (categoryId == (int)CategoryNames.EnumOfCategoryNames.Programming)
-                {
-                    usersAds = _allUsersAds.UsersAds.Where(x => x.CategoryId == categoryId).OrderBy(x => x.Id);
-                    curCategoryName = CategoryNames.Programming;
-                }
-                else if (categoryId == (int)CategoryNames.EnumOfCategoryNames.Design)
-                {
-                    usersAds = _allUsersAds.UsersAds.Where(x => x.CategoryId == categoryId).OrderBy(x => x.Id);
-                    curCategoryName = CategoryNames.Design;
-                }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
-
-                curCategory = categoryId;
-            }
-
+            IEnumerable<UsersAd> usersAds = _allUsersAds.UsersAds.OrderBy(x => x.Id);
 
             var userHomeViewModel = new UsersAdHomeViewModel
             {
+                categoryViewName = "All categories",
                 allUsersAds = usersAds,
-                curCategory = curCategory,
-                categoryViewName = curCategoryName,
+                SelectList = _usersAdsCategory.UbdateSelectList(_selectList),
             };
 
             return View(userHomeViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Index(UsersAdHomeViewModel model)
+        {
+            model.SelectList = _usersAdsCategory.UbdateSelectList(_selectList);
+            model.categoryViewName = _usersAdsCategory.GetCategoryNameById(model.curCategoryId);
+            model.allUsersAds = _allUsersAds.GetUsersAdsByCategoryId(model.curCategoryId);
+            return View(model);
         }
 
         public IActionResult AccessDenied()
