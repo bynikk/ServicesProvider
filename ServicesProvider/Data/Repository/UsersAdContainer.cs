@@ -34,16 +34,5 @@ namespace ServicesProvider.Data.Repository
             }
             return usersAds;
         }
-
-        //public PartialViewResult GetUsersAdsByCategoryId(int categoryId = -1)
-        //{
-        //    IEnumerable<UsersAd> usersAds = _applicationDbContext.UsersAds;
-
-        //    if (categoryId != -1)
-        //    {
-        //        usersAds = _applicationDbContext.UsersAds.Where(x => x.CategoryId == categoryId);
-        //    }
-        //    return PartialViewResult { UsersAds = usersAds,};
-        //}
     }
 }

@@ -43,14 +43,13 @@
             <div class="category-cont">
                 <div class="category-title">@Model.categoryViewName</div>
                 <form class="category-select-cont" asp-controller="Home" asp-action="Index" method="post">
-                        <button class="category-button" type="submit">Apply</button>
-                        <select asp-for="curCategoryId" asp-items="Model.SelectList" class="category-select">
-                            <option value="-1" selected="selected"> All categories</option>
-                        </select>
+                    <button class="category-button" type="submit">Apply</button>
+                    <select asp-for="curCategoryId" asp-items="Model.SelectList" class="category-select">
+                        <option value="-1" selected="selected"> All categories</option>
+                    </select>
                 </form>
             </div>
         </div>
-
 
         <div class="cards">
             @{
@@ -69,7 +68,7 @@
                             </div>
                             <div class="card-footer">
                                 <div class="card-price">@item.Price.ToString("C1")</div>
-                                <a class="card-button">VIEW</a>
+                                <a href="/Home/Item?id=@item.Id" class="card-button">VIEW</a>
                                 <div class="card-publish-time">18:23<br>23.10.2021</div>
                             </div>
                         </div>

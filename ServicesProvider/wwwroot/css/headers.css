@@ -7,6 +7,8 @@ header {
     background-color: #14192E;
     box-sizing: border-box;
     border-bottom: 1px solid #FFFFFFBF;
+    position: absolute;
+    top: 0;
 }
 
 .head-con {
@@ -23,10 +25,10 @@ header {
     height: 70px;
 }
 
-    .log-head-con img {
-        width: 100%;
-        height: auto;
-    }
+.log-head-con img {
+    width: 100%;
+    height: auto;
+}
 
 .nav-link-head {
 }

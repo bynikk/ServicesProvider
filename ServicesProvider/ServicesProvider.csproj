@@ -14,6 +14,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Controllers\AdminController.cs" />
+    <Content Include="Controllers\EnrollmentController.cs" />
+    <Content Include="Controllers\HomeController.cs" />
+    <Content Include="Controllers\ItemController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="jQuery" Version="3.6.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.11" />
@@ -25,6 +32,10 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="5.0.11" />
     <PackageReference Include="Microsoft.jQuery.Unobtrusive.Ajax" Version="3.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
 </Project>

@@ -85,7 +85,7 @@ namespace ServicesProvider
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(name: "default", template: "{controller=Home}/{action=index}/{id?}");
+                routes.MapRoute(name: "default", template: "{controller=Home}/{action=index}");
             });
 
             app.UseEndpoints(endpoints =>

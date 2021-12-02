@@ -215,6 +215,7 @@
     border: 1px solid #FFFFFFBF;
     border-radius: 10px;
     transition: 0.1s linear;
+    text-decoration: none;
 }
 
     .card-button:hover {

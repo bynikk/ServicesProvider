@@ -1,0 +1,126 @@
+html, body {
+  min-height: 98vh;
+  min-width: 98vw;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+  background-color: #14192D;
+}
+
+.form-container {
+  border-radius: 20px;
+  -webkit-box-shadow: 0 0 1px #fff;
+          box-shadow: 0 0 1px #fff;
+  padding: 50px;
+  position: relative;
+  bottom: 10px;
+  font-family: "Montserrat", sans-serif;
+  background-color: #2e38685b;
+  height: 400px;
+  width: 400px;
+}
+
+.auth-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  color: #fff;
+  height: 400px;
+  width: 400px;
+}
+
+.auth-heading {
+  text-align: center;
+  font-size: 4rem;
+  margin: 10px 0;
+  cursor: default;
+  text-shadow: 2px 2px 2px #ffffff4d;
+}
+
+.user-name__input {
+  margin: 20px 0;
+}
+.user-name__input input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-family: "Montserrat", sans-serif;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.password__input {
+  margin: 20px 0;
+}
+.password__input input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-family: "Montserrat", sans-serif;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.href__forgot-c {
+  margin: 10px 0;
+}
+
+.href__forgot {
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  margin: 10px 0;
+}
+
+.auth-btn-c {
+  width: 100%;
+}
+
+.auth-sbmt-btn {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  color: #000;
+  text-shadow: 0px 0px 1px #000;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  background-color: #FDC300;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.auth-sbmt-btn:hover {
+  cursor: pointer;
+  background-color: #FE9601;
+}
+
+.incorrect-data-c {
+  position: fixed;
+  background-color: #ff3939;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0 auto;
+}

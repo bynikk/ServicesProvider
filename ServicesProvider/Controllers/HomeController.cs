@@ -37,10 +37,8 @@ namespace ServicesProvider.Controllers
             _selectList = _usersAdsCategory.GetSelectListItems;
         }
         
-        [Route("Home/Index")]
-        [Route("Home/Index/{categoryId}")]
         [HttpGet]
-        public IActionResult Index(int categoryId)
+        public IActionResult Index()
         {
             IEnumerable<UsersAd> usersAds = _allUsersAds.UsersAds.OrderBy(x => x.Id);
 
@@ -52,6 +50,17 @@ namespace ServicesProvider.Controllers
             };
 
             return View(userHomeViewModel);
+        }
+
+        [HttpGet]
+        public IActionResult Item(int? id)
+        {
+            if (id != null)
+            {
+                return View(id.Value);
+            }
+
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
