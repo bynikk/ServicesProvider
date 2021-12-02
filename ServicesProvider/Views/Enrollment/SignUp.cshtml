@@ -5,104 +5,83 @@
 }
 
 @section Head {
-
+    <title>SignUp</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--===============================================================================================-->
+    <!-- CHOOSE PATH TO ICON lower -->
     <link rel="icon" type="image/png" href="~/images/icons/favicon.ico" />
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/vendor/bootstrap/css/bootstrap.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/vendor/animate/animate.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/vendor/css-hamburgers/hamburgers.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/vendor/animsition/css/animsition.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/vendor/select2/select2.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/vendor/daterangepicker/daterangepicker.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/css/util.css">
-    <link rel="stylesheet" type="text/css" href="~/css/main.css">
-    <link href="~/css/style-login.css" rel="stylesheet" />
-    <link href="~/css/headers.css" rel="stylesheet">    
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
+    <link href="~/css/sign-up.css" rel="stylesheet" />
 }
-<div class="limiter">
-    <div class="container-login100">
-        <div class="wrap-login100 p-t-50 p-b-90">
-            <form class="login100-form validate-form flex-sb flex-w" asp-controller="Enrollment" asp-action="SignUp" method="post">
-                <span class="login100-form-title p-b-51">
-                    Sign Up
-                </span>
-                <div asp-validation-summary="All"></div>
-                <input hidden asp-for="ReturnUrl" value="" />
+<div class="form-container">
+    <form class="auth-form"
+          asp-controller="Enrollment"
+          asp-action="Login"
+          method="post">
 
-                <div class="wrap-input100 validate-input m-b-16" data-validate="FirstName is required">
-                    <input asp-for="FirstName" class="input100" type="text" name="firstName" placeholder="First name">
-                    <span asp-validation-for="FirstName" class="focus-input100"></span>
-                </div>
+        <span class="auth-heading">
+            Sign-up
+        </span>
 
-                <div class="wrap-input100 validate-input m-b-16" data-validate="LastName is required">
-                    <input asp-for="LastName" class="input100" type="text" name="lastName" placeholder="Last name">
-                    <span asp-validation-for="LastName" class="focus-input100"></span>
-                </div>
+        <div asp-validation-summary="All" class="incorrect-data-c">
 
-                <div class="wrap-input100 validate-input m-b-16" data-validate="Username is required">
-                    <input asp-for="UserName" class="input100" type="text" name="userName" placeholder="Username">
-                    <span asp-validation-for="UserName" class="focus-input100"></span>
-                </div>
-
-                <div class="wrap-input100 validate-input m-b-16" data-validate="PhoneNumber is required">
-                    <input asp-for="PhoneNumber" class="input100" type="tel" name="phoneNumber" placeholder="Phone number">
-                    <span asp-validation-for="PhoneNumber" class="focus-input100"></span>
-                </div>
-
-                <div class="wrap-input100 validate-input m-b-16" data-validate="Email is required">
-                    <input asp-for="Email" class="input100" type="email" name="email" placeholder="Email">
-                    <span asp-validation-for="Email" class="focus-input100"></span>
-                </div>
-
-                <div class="wrap-input100 validate-input m-b-16" data-validate="Password is required">
-                    <input asp-for="Password" class="input100" type="password" name="password" placeholder="Password">
-                    <span asp-validation-for="Password" class="focus-input100"></span>
-                </div>
-
-                <div class="wrap-input100 validate-input m-b-16" data-validate="PasswordConfirm is required">
-                    <input asp-for="PasswordConfirm" class="input100" type="password" name="passwordConfirm" placeholder="Confirm password">
-                    <span asp-validation-for="PasswordConfirm" class="focus-input100"></span>
-                </div>
-
-                <div class="container-login100-form-btn m-t-17">
-                    <button type="submit" class="login100-form-btn">
-                        Sign Up
-                    </button>
-                </div>
-
-            </form>
         </div>
-    </div>
-</div>
-<div id="dropDownSelect1"></div>
+        <input hidden asp-for="ReturnUrl" value="" class="" />
 
-<!--===============================================================================================-->
-<script src="~/vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-<script src="~/vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-<script src="~/vendor/bootstrap/js/popper.js"></script>
-<script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-<script src="~/vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-<script src="~/vendor/daterangepicker/moment.min.js"></script>
-<script src="~/vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-<script src="~/vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-<script src="~/js/main.js"></script>
+        <div class="inputs-fl-names">
+            <div class="input-c" data-validate="FirstName is required">
+                <input asp-for="FirstName" class="auth-inputs" type="text" name="firstName" placeholder="First name">
+            </div>
+
+            <div class="input-c" data-validate="LastName is required">
+                <input asp-for="LastName" class="auth-inputs" type="text" name="lastName" placeholder="Last name">
+            </div>
+        </div>
+
+
+        <div class="input-c" data-validate="Username is required">
+            <input asp-for="UserName" class="auth-inputs" type="text" name="userName" placeholder="Username">
+        </div>
+
+        <div class="input-c" data-validate="PhoneNumber is required">
+            <input asp-for="PhoneNumber" class="auth-inputs" type="tel" name="phoneNumber" placeholder="Phone number">
+        </div>
+
+        <div class="input-c" data-validate="Email is required">
+            <input asp-for="Email" class="auth-inputs" type="email" name="email" placeholder="Email">
+        </div>
+
+        <div class="input-c" data-validate="Password is required">
+            <input asp-for="Password" class="auth-inputs" type="password" name="password" placeholder="Password">
+        </div>
+
+        <div class="input-c" data-validate="PasswordConfirm is required">
+            <input asp-for="PasswordConfirm" class="auth-inputs" type="password" name="passwordConfirm" placeholder="Confirm password">
+        </div>
+
+        <div class="input-c" data-validate="Username is required">
+            <input asp-for="UserName"
+                   class="auth-inputs"
+                   type="text"
+                   name="username"
+                   placeholder="Username">
+        </div>
+
+
+        <div class="input-c" data-validate="Password is required">
+            <input asp-for="Password"
+                   class="auth-inputs" type="password"
+                   name="password"
+                   placeholder="Password">
+        </div>
+
+        <div class="auth-btn-c">
+            <button type="submit" class="auth-sbmt-btn">
+                Sign-up
+            </button>
+        </div>
+
+    </form>
+</div>
