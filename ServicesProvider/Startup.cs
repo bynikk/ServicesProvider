@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Identity;
 namespace ServicesProvider
 {
     public class Startup
+    #region{
     {
         public IConfiguration Configuration { get; }
         public Startup(IConfiguration configuration) => Configuration = configuration; 
@@ -49,7 +50,7 @@ namespace ServicesProvider
                 config.LoginPath = "/Admin/Login";
                 config.AccessDeniedPath = "/Home/AccessDenied";
             });
-
+            #endregion
             services.AddAuthorization(options =>
             {
                 options.AddPolicy(RolesModel.Administrator, builder =>

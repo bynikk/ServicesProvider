@@ -58,7 +58,7 @@
                     <div class="card-section">
                         <div class="card">
                             <div class="card-img">
-                                <img src="@item.Img" alt="card-img">
+                                <img src="@("~/ImagesAds/"+item.ImageName)" alt="card-img" asp-append-version="true">
                             </div>
                             <div class="card-title">@item.Name</div>
                             <div class="card-desc">@(item.ShortDesc ?? "There shoud")</div>
@@ -78,6 +78,4 @@
         </div>
     </div>
 </body>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 

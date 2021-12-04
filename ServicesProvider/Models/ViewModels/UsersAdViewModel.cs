@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ServicesProvider.Models.Entities;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ServicesProvider.Models.ViewModels
 {
@@ -34,6 +37,16 @@ namespace ServicesProvider.Models.ViewModels
         public int CategoryId { set; get; }
 
         public virtual Category Category { set; get; }
+
+        [Column(TypeName = "nvarchar(50)")]
+        public string Title { get; set; }
+
+        [Column(TypeName = "nvarchar(100)")]
+        public string ImageName { get; set; }
+
+        [NotMapped]
+        [DisplayName("Upload file:")]
+        public IFormFile ImageFile { get; set; }
 
     }
 }

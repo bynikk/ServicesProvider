@@ -10,6 +10,7 @@ using ServicesProvider.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 using ServicesProvider.Service;
+using Microsoft.AspNetCore.Hosting;
 
 namespace ServicesProvider.Controllers
 {
@@ -26,10 +27,11 @@ namespace ServicesProvider.Controllers
         public ItemController(
             ApplicationDbContext applicationDbContext,
             UserManager<ApplicationUser> userManager,
-            IUsersAdsCategory usersAdsCategory)
+            IUsersAdsCategory usersAdsCategory,
+            IWebHostEnvironment hostEnvironment)
         {
             _userManager = userManager;
-            _dbUsersAdManager = new(applicationDbContext, userManager);
+            _dbUsersAdManager = new(applicationDbContext, hostEnvironment);
             _usersAdsCategory = usersAdsCategory;
             _selectList = _usersAdsCategory.GetSelectListItems;
         }
@@ -47,19 +49,27 @@ namespace ServicesProvider.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.SelectList = _usersAdsCategory.UbdateSelectList(_selectList);
                 return View(model);
             }
 
             if (!_validator.ValidateUsersAdViewModel(model))
             {
+                ViewBag.SelectList = _usersAdsCategory.UbdateSelectList(_selectList);
                 ModelState.AddModelError("", "Server Error");
                 return View(model);
             }
 
             var user = GetCurrentUser();
-            _dbUsersAdManager.AddUserAd(model, user);
+            var result = _dbUsersAdManager.AddUserAd(model, user);
+            if (!result)
+            {
+                ViewBag.SelectList = _usersAdsCategory.UbdateSelectList(_selectList);
+                ModelState.AddModelError("", "Server Error");
+                return View();
+            }
 
-            return View();
+            return Redirect("/Home/Index/");
         }
 
         private ApplicationUser GetCurrentUser()
