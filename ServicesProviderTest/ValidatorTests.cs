@@ -206,4 +206,4 @@ namespace ServicesProviderTest
             Assert.AreEqual(true, _validator.ValidateUsersAdViewModel(model));
         }
     }
-} 
+}

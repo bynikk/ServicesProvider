@@ -1,7 +1,83 @@
-﻿@model int
+﻿@using ServicesProvider.Models
+@model ServicesProvider.Models.ViewModels.UsersAdViewModel
+
 
 @{
     Layout = "_Layout";
 }
 
-<p>@Model</p>
+@section Head {
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/reset.css">
+    <link rel="stylesheet" href="~/css/product.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet">
+    <title>Item</title>
+}
+
+<body>
+    <div class="content-c">
+        <span class="bk-to-hm"><a href="/home"> < Home </a></span>
+        <span class="prod-name-txt">@(Model.Name)</span>
+
+        <div class="card-c">
+
+            <div class="main-part-card-c">
+
+                <div class="card-img-c">
+                   <img class="card-img" src="@("~/ImagesAds/"+Model.ImageName)" asp-append-version="true" />
+                    <div class="card-img-little-c">
+                        <div class="card-img-little" style="background-image:url("@("~/ImagesAds/" + Model.ImageName)")" asp-append-version="true">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-info-c">
+                    <div class="inf-disc-c">
+                        <div class="info-c">
+                            <div class="info-name-c">
+                                <span class="mini-text">Assert name</span>
+                                <span class="info-name">@(Model.Name)</span>
+                            </div>
+                            <div class="info-id-c">
+                                <span class="mini-text">ID</span>
+                                <span class="info-id">#@(Model.Id)</span>
+                            </div>
+                            <div class="info-owner-c">
+                                <span class="mini-text">Owner</span>
+                                <span class="info-owner">bbbb</span>
+                            </div>
+                            <div class="info-date-c">
+                                <span class="mini-text">Date</span>
+                                <span class="info-date">@(Model.CreatinDate)</span>
+                            </div>
+                            <div class="info-category-c">
+                                <span class="mini-text">Category</span>
+                                <span class="info-category">@(Model.Category.CategoryName)</span>
+                            </div>
+                        </div>
+                        <div class="discription-c">
+                            <span class="mini-text">Discription</span>
+                            <p class="discription">
+                                @(Model.LongDesc)
+                            </p>
+                        </div>
+                    </div>
+                    <div class="btns-c">
+                        <button class="dlt-btn">Delete</button>
+                        <button class="ordr-btn">Make order</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-prise-c">
+
+            </div>
+
+        </div>
+    </div>
+</body>

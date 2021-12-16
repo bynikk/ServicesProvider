@@ -13,12 +13,22 @@ namespace ServicesProvider.Data.DbObjects
 
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _hostEnvironment;
-        public DbUsersAdManager(ApplicationDbContext context,
-            IWebHostEnvironment hostEnvironment)
+        public DbUsersAdManager(
+            ApplicationDbContext context,
+            IWebHostEnvironment hostEnvironment
+            )
         {
             _context = context;
             _hostEnvironment = hostEnvironment;
         }
+
+        public UsersAdViewModel GetUsersAdViewById(int? UsersAdId)
+        {
+            var UsersAd = _context.UsersAds.FirstAsync(x => x.Id == UsersAdId).GetAwaiter()
+                .GetResult();
+            return new UsersAdViewModel(UsersAd);
+        }
+
         public bool AddUserAd(UsersAdViewModel model, ApplicationUser user)
         {
             try
@@ -31,7 +41,7 @@ namespace ServicesProvider.Data.DbObjects
                 UsersAd.CategoryId = model.CategoryId;
                 UsersAd.OwnerUsername = user.UserName;
                 UsersAd.Category = FindCategoryByCategoryId(model.CategoryId);
-
+                UsersAd.CreatinDate = DateTime.Now.ToString();
                 // Save image to wwwroot/ImagesAds
                 string wwwrootPath = _hostEnvironment.WebRootPath;
                 string fileName = Path.GetFileNameWithoutExtension(model.ImageFile.FileName);
@@ -53,7 +63,7 @@ namespace ServicesProvider.Data.DbObjects
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Add ex: {ex}");
+                Console.WriteLine($"Server exeption: {ex}");
                 return false;
             }
         }
@@ -63,5 +73,7 @@ namespace ServicesProvider.Data.DbObjects
             return _context.Category.FirstAsync(x => x.Id == CategoryId).GetAwaiter()
                 .GetResult(); ;
         }
+
+
     }
 }

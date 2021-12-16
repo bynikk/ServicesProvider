@@ -170,6 +170,9 @@
     width: 80%;
     height: 40%;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .card-img img {
@@ -217,12 +220,13 @@
     border-radius: 10px;
     transition: 0.1s linear;
     text-decoration: none;
+    color: #fff;
 }
 
-    .card-button:hover {
-        background-color: #FFFFFFBF;
-        color: #14192E
-    }
+.card-button:hover {
+    background-color: #FFFFFFBF;
+    color: #14192E
+}
 
 .card-publish-time {
     text-align: right;

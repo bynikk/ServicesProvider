@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 using ServicesProvider.Service;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
+using ServicesProvider.Models;
 
 namespace ServicesProvider.Controllers
 {
@@ -36,6 +38,7 @@ namespace ServicesProvider.Controllers
             _selectList = _usersAdsCategory.GetSelectListItems;
         }
 
+        [Authorize(Policy = RolesModel.User)]
         [HttpGet]
         public IActionResult Add()
         {
@@ -44,6 +47,7 @@ namespace ServicesProvider.Controllers
             return View();
         }
 
+        [Authorize(Policy = RolesModel.User)]
         [HttpPost]
         public IActionResult Add(UsersAdViewModel model)
         {

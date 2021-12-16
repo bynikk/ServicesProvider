@@ -18,6 +18,7 @@ namespace ServicesProvider.Models.Entities
             PhoneNumber = model.PhoneNumber;
             Email = model.Email;
             PasswordHash = model.Password;
+            
         }
         public string FirstName { get; set; }
 

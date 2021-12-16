@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ServicesProvider.Models.Entities;
+using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,6 +10,24 @@ namespace ServicesProvider.Models.ViewModels
 {
     public class UsersAdViewModel
     {
+        
+
+        public UsersAdViewModel()
+        {
+
+        }
+        public UsersAdViewModel(UsersAd userAdModel)
+        {
+            Id = userAdModel.Id;
+            Name = userAdModel.Name;
+            ShortDesc = userAdModel.ShortDesc;
+            LongDesc = userAdModel.LongDesc;
+            Price = userAdModel.Price;
+            CategoryId = userAdModel.CategoryId;
+            Category = userAdModel.Category;
+            ImageName = userAdModel.ImageName;
+            CreatinDate = userAdModel.CreatinDate;
+        }
         public SelectList SelectList { get; set; }
 
         public int Id { set; get; }
@@ -47,6 +66,14 @@ namespace ServicesProvider.Models.ViewModels
         [NotMapped]
         [DisplayName("Upload file:")]
         public IFormFile ImageFile { get; set; }
+
+        [NotMapped]
+        private DateTime _creatinDate;
+        public string CreatinDate
+        {
+            set { _creatinDate = Convert.ToDateTime(value); }
+            get { return string.Format("{0:g}", _creatinDate); }
+        }
 
     }
 }

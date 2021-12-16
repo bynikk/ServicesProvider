@@ -69,7 +69,7 @@
                             <div class="card-footer">
                                 <div class="card-price">@item.Price.ToString("C1")</div>
                                 <a href="/Home/Item?id=@item.Id" class="card-button">VIEW</a>
-                                <div class="card-publish-time">18:23<br>23.10.2021</div>
+                                <div class="card-publish-time">@(item.CreatinDate)</div>
                             </div>
                         </div>
                     </div>

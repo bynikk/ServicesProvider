@@ -106,19 +106,21 @@ namespace ServicesProvider.Controllers
             if (result.Succeeded)
             {
                 await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, RolesModel.User));
-                Redirect("/Home/Index");
+                await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
+                return Redirect("/Home/Index");
             }
+
             
 
             return View(model);
         }
 
-        private async Task Authorize(ApplicationUser user)
+        private async Task AuthorizeAsync(ApplicationUser user, string rolesModel)
         {
             IEnumerable<Claim> claims = new List<Claim>()
             {
                 new Claim(ClaimTypes.Name, user.FirstName),
-                new Claim(ClaimTypes.Role, RolesModel.User),
+                new Claim(ClaimTypes.Role, rolesModel),
             };
 
             var id = new ClaimsIdentity(claims, "Application cocie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);

@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using ServicesProvider.Data;
+using ServicesProvider.Data.DbObjects;
 using ServicesProvider.Models;
 using ServicesProvider.Models.Entities;
 using ServicesProvider.Models.Interfaces;
@@ -15,7 +18,8 @@ namespace ServicesProvider.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-
+        private readonly DbUsersAdManager _dbUsersAdManager;
+        
         private readonly IAllUsersAds _allUsersAds;
         private readonly IUsersAdsCategory _usersAdsCategory;
 
@@ -25,11 +29,15 @@ namespace ServicesProvider.Controllers
         public HomeController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
+            ApplicationDbContext applicationDbContext,
+            IWebHostEnvironment hostEnvironment,
             IAllUsersAds allUsersAds,
             IUsersAdsCategory usersAdsCategory)
         {
             _userManager = userManager;
-            _signInManager = signInManager;
+            _signInManager = signInManager;;
+
+            _dbUsersAdManager = new(applicationDbContext, hostEnvironment);
 
             _allUsersAds = allUsersAds;
             _usersAdsCategory = usersAdsCategory;
@@ -57,7 +65,9 @@ namespace ServicesProvider.Controllers
         {
             if (id != null)
             {
-                return View(id.Value);
+                var model = _dbUsersAdManager.GetUsersAdViewById(id);
+                model.Category = _dbUsersAdManager.FindCategoryByCategoryId(model.CategoryId);
+                return View(model);
             }
 
             return RedirectToAction("Index");
